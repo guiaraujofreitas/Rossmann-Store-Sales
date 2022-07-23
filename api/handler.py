@@ -37,7 +37,7 @@ def rossmann_predict():
         df1 = pipeline.data_cleaning(test_raw)
         
         #featuree engineering
-        df2 = pepeline.feature_engineering(df1)
+        df2 = pipeline.feature_engineering(df1)
         
         #data preparation
         df3 = pipeline.data_preparation(df2)
