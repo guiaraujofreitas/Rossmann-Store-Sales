@@ -5,23 +5,30 @@ import inflection
 import pandas as pd
 import numpy as np
 import datetime
+from datetime import date
 import math
+from sklearn.preprocessing   import LabelEncoder
 
 class Rossmann (object):
     def __init__( self ):
         self.home_path = '/home/guilherme/Documentos/repos/datascienceemproducao/'
-        self.competition_distance_scaler  = pickle.load( open(self.home_path + '/home/guilherme/Documentos/repos/datascienceemproducao/parameter/competition_distance_scaler.pkl_scaler', 'rb') )
-        self.compettion_time_month_scaler = pickle.load( open(self.home_path + '/home/guilherme/Documentos/repos/datascienceemproducao//parameter/compettion_time_month.pkl_scaler', 'rb') )
-        self.promo_time_week_scaler       = pickle.load( open(self.home_path + '/home/guilherme/Documentos/repos/datascienceemproducao//parameter/promo_time_week.pkl_scaler', 'rb') )
-        self.year_scaler                  = pickle.load( open(self.home_path + '/home/guilherme/Documentos/repos/datascienceemproducao//parameter/year.pkl_scaler', 'rb') )
-        self.store_type_encoded_scaler    = pickle.load( open(self.home_path + '/home/guilherme/Documentos/repos/datascienceemproducao/parameter/store_type_encoded_scaler.pkl', 'rb' ) )
+        self.competition_distance_scaler  = pickle.load( open(self.home_path + 'parameter/competition_distance_scaler.pkl_scaler', 'rb') )
+        self.compettion_time_month_scaler = pickle.load( open(self.home_path + 'parameter/compettion_time_month.pkl_scaler', 'rb') )
+        self.promo_time_week_scaler       = pickle.load( open(self.home_path + 'parameter/promo_time_week.pkl_scaler', 'rb') )
+        self.year_scaler                  = pickle.load( open(self.home_path + 'parameter/year.pkl_scaler', 'rb') )
+        self.store_type_encoded_scaler    = pickle.load( open(self.home_path + 'parameter/store_type_encoded_scaler.pkl', 'rb' ) )
         
     def data_cleaning(self, df1):
         
 
         ## 1.1  Rename Columns and Remove the Feature Sales and Customers
 
-
+        df1['Promo2SinceWeek']           = df1['Promo2SinceWeek'].fillna(0).astype(int)
+        df1['Promo2SinceYear']           = df1['Promo2SinceYear'].fillna(0).astype(int)
+        df1['CompetitionDistance']       = df1['CompetitionDistance'].fillna(0).astype(int)
+        df1['CompetitionOpenSinceMonth'] = df1['CompetitionOpenSinceMonth'].fillna(0).astype(int)
+        df1['CompetitionOpenSinceYear']  = df1['CompetitionOpenSinceYear'].fillna(0).astype(int)
+        
         cols_old = ['Store', 'DayOfWeek', 'Date', 'Open', 'Promo',
                    'StateHoliday', 'SchoolHoliday', 'StoreType', 'Assortment',
                    'CompetitionDistance', 'CompetitionOpenSinceMonth',
@@ -109,8 +116,10 @@ class Rossmann (object):
         df2['year_week'] = df2['date'].dt.strftime('%Y-%W')
 
         df2['competition_since'] = df2.apply(lambda x: datetime.datetime(year=x['competition_open_since_year'],
-                                                                       month=x['competition_open_since_month'],
-                                                                       day=1),axis=1)
+                                                                         month=x['competition_open_since_month'],
+                                                                         day=1),axis=1 )
+        #date.fromtimestamp
+        
 
         df2['compettion_time_month'] = ( ( df2['date'] - df2['competition_since'] )/30 ).apply(lambda x: x.days).astype(int)
 
@@ -181,8 +190,8 @@ class Rossmann (object):
 
         # Label Enconding 
 
-        df5['store_type_encoded'] = self.store_type_encoded_scale.fit(df5.store_type)
-
+        df5['store_type_encoded'] = self.store_type_encoded_scaler.fit(df5.store_type)
+        
 
         # ===================================== assortment ============================================== #
 
@@ -232,7 +241,7 @@ class Rossmann (object):
     
     def get_prediction (self, model, original_data, test_data):
         #prediction
-        pred - model.predict( test_data )
+        pred = model.predict( test_data )
         
         #join predict with original data
         original_data['prediction'] = np.expm1(pred)
