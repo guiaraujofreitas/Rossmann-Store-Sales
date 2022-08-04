@@ -12,22 +12,17 @@ from sklearn.preprocessing   import LabelEncoder
 class Rossmann (object):
     def __init__( self ):
         self.home_path = '/home/guilherme/Documentos/repos/datascienceemproducao/'
-        self.competition_distance_scaler  = pickle.load( open(self.home_path + 'parameter/competition_distance_scaler.pkl_scaler', 'rb') )
-        self.compettion_time_month_scaler = pickle.load( open(self.home_path + 'parameter/compettion_time_month.pkl_scaler', 'rb') )
-        self.promo_time_week_scaler       = pickle.load( open(self.home_path + 'parameter/promo_time_week.pkl_scaler', 'rb') )
-        self.year_scaler                  = pickle.load( open(self.home_path + 'parameter/year.pkl_scaler', 'rb') )
+        self.competition_distance_scaler  = pickle.load( open(self.home_path + 'parameter/competition_distance_scaler.pkl','rb') )
+        self.compettion_time_month_scaler = pickle.load( open(self.home_path + 'parameter/compettion_time_month.pkl','rb') )
+        self.promo_time_week_scaler       = pickle.load( open(self.home_path + 'parameter/promo_time_week.pkl', 'rb') )
+        self.year_scaler                  = pickle.load( open(self.home_path + 'parameter/year.pkl', 'rb') )
         self.store_type_encoded_scaler    = pickle.load( open(self.home_path + 'parameter/store_type_encoded_scaler.pkl', 'rb' ) )
         
     def data_cleaning(self, df1):
         
 
         ## 1.1  Rename Columns and Remove the Feature Sales and Customers
-
-        df1['Promo2SinceWeek']           = df1['Promo2SinceWeek'].fillna(0).astype(int)
-        df1['Promo2SinceYear']           = df1['Promo2SinceYear'].fillna(0).astype(int)
-        df1['CompetitionDistance']       = df1['CompetitionDistance'].fillna(0).astype(int)
-        df1['CompetitionOpenSinceMonth'] = df1['CompetitionOpenSinceMonth'].fillna(0).astype(int)
-        df1['CompetitionOpenSinceYear']  = df1['CompetitionOpenSinceYear'].fillna(0).astype(int)
+                                            
         
         cols_old = ['Store', 'DayOfWeek', 'Date', 'Open', 'Promo',
                    'StateHoliday', 'SchoolHoliday', 'StoreType', 'Assortment',
@@ -50,6 +45,7 @@ class Rossmann (object):
 
         # convent the colum data to datetime64
         df1['date'] = df1['date'].astype('datetime64[ns]')
+        #df1['date'] = pd.to_datetime(df1['date'])
 
         ## 1.5 FillOut NA
 
@@ -102,8 +98,11 @@ class Rossmann (object):
 
         df1['competition_open_since_year'] =  df1['competition_open_since_year'].astype(int)
         
+        
         return df1
+    
     def feature_engineering(self, df2):
+        
         
         df2['year']= df2['date'].dt.year
 
@@ -114,12 +113,10 @@ class Rossmann (object):
         df2['week_of_year'] = df2['date'].dt.isocalendar().week
 
         df2['year_week'] = df2['date'].dt.strftime('%Y-%W')
-
-        df2['competition_since'] = df2.apply(lambda x: datetime.datetime(year=x['competition_open_since_year'],
-                                                                         month=x['competition_open_since_month'],
-                                                                         day=1),axis=1 )
-        #date.fromtimestamp
-        
+                                                                   
+        df2['competition_since'] = df2.apply(lambda x:datetime.datetime(year=x['competition_open_since_year'],
+                                                                        month=x['competition_open_since_month'],day=1),axis=1)
+                                                                                                                               
 
         df2['compettion_time_month'] = ( ( df2['date'] - df2['competition_since'] )/30 ).apply(lambda x: x.days).astype(int)
 
@@ -127,7 +124,8 @@ class Rossmann (object):
         df2['promo_since'] = df2['promo2_since_year'].astype(str) + '-' + df2['promo2_since_week'].astype(str)
 
         # convent promo time week to datetime
-        df2['promo_since'] = df2['promo_since'].apply(lambda x: datetime.datetime.strptime( x + '-1','%Y-%W-%w') - datetime.timedelta(days=7) )
+        df2['promo_since'] = df2['promo_since'].apply(lambda x: datetime.datetime.strptime( x + '-1','%Y-%W-%w') - 
+                                                      datetime.timedelta(days=7) )
 
 
         #calcule between start promo and continuation 
@@ -163,13 +161,13 @@ class Rossmann (object):
         selection = df5.select_dtypes( include = ['int64', 'float64'] )
 
         #competition_distance
-        df5['competition_distance'] = self.competition_distance_scaler.fit( df5[['competition_distance']].values )
-
+        df5['competition_distance'] = self.competition_distance_scaler.transform( df5[['competition_distance']].values )
+        
         #competition_time_month
-        df5['compettion_time_month'] = self.compettion_time_month_scaler.fit( df5[['compettion_time_month']].values )
+        df5['compettion_time_month'] = self.compettion_time_month_scaler.transform( df5[['compettion_time_month']].values )
 
         #promo_time_week
-        df5['promo_time_week'] = self.promo_time_week_scaler.fit( df5[['promo_time_week']].values )
+        df5['promo_time_week'] = self.promo_time_week_scaler.transform( df5[['promo_time_week']].values )
 
         #year
         df5['year'] = self.year_scaler.fit( df5[['year']].values )
@@ -190,7 +188,7 @@ class Rossmann (object):
 
         # Label Enconding 
 
-        df5['store_type_encoded'] = self.store_type_encoded_scaler.fit(df5.store_type)
+        df5['store_type_encoded'] = self.store_type_encoded_scaler.transform(df5.store_type)
         
 
         # ===================================== assortment ============================================== #
@@ -240,6 +238,7 @@ class Rossmann (object):
         return df5[cols_select]
     
     def get_prediction (self, model, original_data, test_data):
+        
         #prediction
         pred = model.predict( test_data )
         
