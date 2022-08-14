@@ -20,7 +20,17 @@ Para que o CFO consiga acessar de uma forma fácil, as previsões serão agrupad
 Como trata-se de um grande volume de dados, o projeto será feito por meio da métodológia CRISP-DM, que se baseia em trabalhar de uma forma ciclíca as soluções dos problemas, com isso entregando todas as etapas do projeto o mais rápido possível com o intuito de gerar valor ao time de negócios. 
 
 
+
+![metodo_ciclico_CRISP_DS](https://user-images.githubusercontent.com/78666925/184556632-b96a775d-7dbc-4427-9699-402c57d0dd39.png)
+
+
 ## Questão do Problema
+
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 
 ## Entendimento do Negócio
 
