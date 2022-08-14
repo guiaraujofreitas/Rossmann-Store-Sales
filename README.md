@@ -23,14 +23,27 @@ Como trata-se de um grande volume de dados, o projeto será feito por meio da m�
 
 ![metodo_ciclico_CRISP_DS](https://user-images.githubusercontent.com/78666925/184556632-b96a775d-7dbc-4427-9699-402c57d0dd39.png)
 
+## 0 - Implementação
 
-## Questão do Problema
+ ### 0.1 - Preparação do Ambiente Virtual
+  Nessa etapa é necessário ter o gerenciador de pacotes pip e do gerenciador de ambiente virtual virtualenv. 
+     
+   Abra o terminal vá até a pasta de destino aonde será criando o ambiente e execute o seguinte comando:
+ 
+   No MacOS ou Linux:
+ 
+ ``` virtualenv --python=/usr/bin/python3.8 <projetorossmann> ```
+ 
+ 
+   Caso você use o Anaconda:
+ 
+   ```  conda create -n projetorossmann python=3.8 ```
+      
 
-```
-function test() {
-  console.log("notice the blank line before this function?");
-}
-```
+      
+   
+ 
+## Questão de Négocio
 
 ## Entendimento do Negócio
 
