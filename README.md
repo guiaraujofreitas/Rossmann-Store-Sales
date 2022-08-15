@@ -43,13 +43,25 @@ Como trata-se de um grande volume de dados, o projeto será feito por meio da m�
       
    
  
-## Questão de Négocio
+## Questão de Negócio
+ Como foi visto na parte "Problema de Negócio", o problema central da empresa Rossmann no momento é saber as previsões de vendas das próximas 6 semanas. Já que os dados forncecidos pelos seus gerentes encontram-se com muitas divergências. 
 
 ## Entendimento do Negócio
+Já tendo conhecimento da problématica, foi procurado entender o motivo para que essa previsão seja elaborada. O objetivo dessa previsão é para reformas em todas as unidades Rossmann sejam feitas. 
+
+Objetivo do projeto: Então este projeto pretente fazer as previsões dos pŕoximos dias do faturamento de todas as lojas, utilizando os métodos cientificos de análise. Já que os gerentes não contém esse conhecimento técnico. 
+
+Então para isso, foi decido contrator um cientista de dados que tenha essa habilidade para resolver tal problemática. 
 
 ## Coleta dos Dados
+Os dados utilizados neste projeto foram retirado do site abaixo:
+
+https://www.kaggle.com/competitions/rossmann-store-sales/data
 
 ## Limpeza dos Dados
+Nessa parte foram feitas as seguintes atividades:
+
+Descrição dos Dados: Nessa etapa foram verificados o dimensionamento das linhas e colunas; tratamentos de dados nulos; 
 
 ## Exploração dos Dados
 
