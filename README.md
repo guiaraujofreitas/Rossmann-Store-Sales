@@ -61,7 +61,15 @@ https://www.kaggle.com/competitions/rossmann-store-sales/data
 ## Limpeza dos Dados
 Nessa parte foram feitas as seguintes atividades:
 
-Descrição dos Dados: Nessa etapa foram verificados o dimensionamento das linhas e colunas; tratamentos de dados nulos; 
+Descrição dos Dados: 
+- Nessa etapa foram verificados o 
+- Dimensionamento das linhas e colunas;
+- Verificação dos tipos de dados do conjuto de dados;
+- Descobrindo a quantidade de valores nulos e o quanto representa em percentual em relação todo o dataset;
+- Tratamento de todos os valores nulos encontrados, onde foi assumindo uma premissa de negócio de acordo com o contéudo de cada coluna;
+- Alteração dos tipos de colunas para facilitar o trabalho com os dados;
+- Feature Engineering: Nessa fase foi elaborada novas features, com a finalidade na etapa de exploração de dados, possa ser mais insights. 
+- Filtragem dos dados. 
 
 ## Exploração dos Dados
 
