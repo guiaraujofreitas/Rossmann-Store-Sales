@@ -49,9 +49,8 @@ Como trata-se de um grande volume de dados, o projeto será feito por meio da m�
 ## Entendimento do Negócio
 Já tendo conhecimento da problématica, foi procurado entender o motivo para que essa previsão seja elaborada. O objetivo dessa previsão é para reformas em todas as unidades Rossmann sejam feitas. 
 
-Objetivo do projeto: Então este projeto pretente fazer as previsões dos pŕoximos dias do faturamento de todas as lojas, utilizando os métodos cientificos de análise. Já que os gerentes não contém esse conhecimento técnico. 
-
-Então para isso, foi decido contrator um cientista de dados que tenha essa habilidade para resolver tal problemática. 
+Objetivo do projeto: Este projeto pretente fazer as devidas previsões de todo o faturamento das lojas. Utilizando os métodos cientificos de análise dos dados coletados. Já que os atuais gerentes das unidades não possuem tal conhecimento técnico. 
+Para isso, foi decido contrator um cientista de dados que tenha essa habilidade para resolver essa problemática. 
 
 ## Coleta dos Dados
 Os dados utilizados neste projeto foram retirado do site abaixo:
@@ -59,19 +58,26 @@ Os dados utilizados neste projeto foram retirado do site abaixo:
 https://www.kaggle.com/competitions/rossmann-store-sales/data
 
 ## Limpeza dos Dados
-Nessa parte foram feitas as seguintes atividades:
+Nessa etapa é objetivo é saber qual é o desafio do problema. Então para isso foram feitas as seguintes atividades:
 
 Descrição dos Dados: 
-- Nessa etapa foram verificados o 
+
 - Dimensionamento das linhas e colunas;
 - Verificação dos tipos de dados do conjuto de dados;
-- Descobrindo a quantidade de valores nulos e o quanto representa em percentual em relação todo o dataset;
+- Descobrindo a quantidade de valores nulos e o quanto representa em percentual em relação ao todo dataset;
 - Tratamento de todos os valores nulos encontrados, onde foi assumindo uma premissa de negócio de acordo com o contéudo de cada coluna;
 - Alteração dos tipos de colunas para facilitar o trabalho com os dados;
-- Feature Engineering: Nessa fase foi elaborada novas features, com a finalidade na etapa de exploração de dados, possa ser mais insights. 
-- Filtragem dos dados. 
-
+- Descrição Estatística das váriveis numéricas e catégoricas;
+- Feature Engineering: Nessa fase foi elaborada novas features, a partir de um mapa mental, onde foram levantados algumas hipoteses de acordo com elementos citados neste mapa que de alguma maneira podem afetar as vendas. 
+ 
 ## Exploração dos Dados
+
+Nessa etapa o objetivo princial é adquirir mais conhecimento sobre o modelo de negócio que estamos trabalhando, além de validar hipóteses levantadas pelo time de negócio da empresa.   
+
+- Filtragem dos dados: Foram feitas a remoção das lojas que estavam fechadas naquele dia e como consequência a remoção das lojas que não obtiveram vendas naquele respectivo dia. 
+- Seleções das colunas: Foram feitas as escolhas das feature mais relevantes para o modelo de négocio;
+- Análise dos dados:
+- Analise Univáriada: Nessa atividade foram feitas uma série de plotagem de gŕaficos para saber como nossa váriavel
 
 ## Modelagem dos dados
 
