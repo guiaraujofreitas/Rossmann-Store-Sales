@@ -76,8 +76,18 @@ Nessa etapa o objetivo princial é adquirir mais conhecimento sobre o modelo de 
 
 - Filtragem dos dados: Foram feitas a remoção das lojas que estavam fechadas naquele dia e como consequência a remoção das lojas que não obtiveram vendas naquele respectivo dia. 
 - Seleções das colunas: Foram feitas as escolhas das feature mais relevantes para o modelo de négocio;
-- Análise dos dados:
-- Analise Univáriada: Nessa atividade foram feitas uma série de plotagem de gŕaficos para saber como nossa váriavel
+- Analise univáriada: Nessa atividade foram feitas uma série de plotagem de gŕaficos para saber como uma única varáivel dos dadoss afeta o fenômeno das vendas;
+- Análise bivariada : Nesa fase foram feitas a exploração mais afundo de duas ou mais váriaveis afim de gerar validaçês das hipotéses listadas e também gerar novos insights sobre algumas crenças.
+
+Nas imagens abaixo alguns exemplos das hipótes validadas ou não validadas:
+H3 - Lojas com competidores mais próximo deveriam venderiam menos.
+- Falso: Lojas vendem mais com competidores mais próximo.
+
+H6- Lojas com mais promoções consecutivas deveriam vender mais.
+- Falso: Lojas com mais promoções sucessivas não vendem mais.
+
+H10 - Lojas deveriam vender mais depois do dia 10 de cada mês.
+- Verdade : Lojas vendem MAIS após o dia 10 de cada mês.
 
 ## Modelagem dos dados
 
