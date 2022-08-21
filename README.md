@@ -50,14 +50,14 @@ Objetivo do projeto: Este projeto pretente fazer as devidas previsões de todo o
 Para isso, foi decidido contratar um cientista de dados, que tenha essa habilidade para resolver essa problemática. 
 
 ## Coleta dos Dados
-Os dados utilizados neste projeto foram retirado do site abaixo:
+Os dados utilizados neste projeto podem ser acessados clicando neste link abaixo: 
 
-https://www.kaggle.com/competitions/rossmann-store-sales/data
+[Dados do Projeto Rossmann](https://www.kaggle.com/competitions/rossmann-store-sales/data)
 
 ## Limpeza dos Dados
 Nessa etapa é objetivo é saber qual é o desafio do problema. Então para isso foram feitas as seguintes atividades:
 
-Descrição dos Dados: 
+**Descrição dos Dados:** 
 
 - Dimensionamento das linhas e colunas;
 - Verificação dos tipos de dados do conjuto de dados;
@@ -67,6 +67,8 @@ Descrição dos Dados:
 - Descrição Estatística das váriveis numéricas e catégoricas;
 - Feature Engineering: Nessa fase foi elaborada novas features, a partir de um mapa mental, onde foram levantados algumas hipoteses de acordo com elementos citados neste mapa que de alguma maneira podem afetar as vendas. 
  
+ ![MindMapHpyothesis](https://user-images.githubusercontent.com/78666925/185799071-f6ce28e1-59c3-4532-810e-9e63b8a90ea0.png)
+
 ## Exploração dos Dados
 
 Nessa etapa o objetivo princial é adquirir mais conhecimento sobre o modelo de negócio que estamos trabalhando, além de validar hipóteses levantadas pelo time de negócio da empresa.   
@@ -79,18 +81,18 @@ Nessa etapa o objetivo princial é adquirir mais conhecimento sobre o modelo de 
 
 Nas imagens abaixo alguns exemplos das hipótes validadas ou não validadas:
 
-H3 - Lojas com competidores mais próximo deveriam venderiam menos.
-- Falso: Lojas vendem mais com competidores mais próximo.
+**H3** - Lojas com competidores mais próximo deveriam venderiam menos.
+- **Falso**: Lojas vendem mais com competidores mais próximo.
 ![h3-hipotese-03](https://user-images.githubusercontent.com/78666925/185766363-3d882055-beaf-4d5f-bdfb-ee1b2aeddcf5.png)
 
 
-H6- Lojas com mais promoções consecutivas deveriam vender mais.
-- Falso: Lojas com mais promoções sucessivas não vendem mais.
+**H6**- Lojas com mais promoções consecutivas deveriam vender mais.
+- **Falso**: Lojas com mais promoções sucessivas não vendem mais.
 ![h6-hipotese-06](https://user-images.githubusercontent.com/78666925/185766332-eea19ef0-92f7-49c3-8b45-7f6503bb128a.png)
 
 
-H10 - Lojas deveriam vender mais depois do dia 10 de cada mês.
-- Verdade : Lojas vendem MAIS após o dia 10 de cada mês.
+**H10** - Lojas deveriam vender mais depois do dia 10 de cada mês.
+- **Verdade** : Lojas vendem MAIS após o dia 10 de cada mês.
 ![h10-hipote-10](https://user-images.githubusercontent.com/78666925/185766389-f3bb69da-dd10-4563-81ff-7282bec97c38.png)
 
 ## Modelagem dos dados
@@ -115,9 +117,9 @@ Os modelos selecionados para os testes foram:
 
 Após o teste o algoritmo que teve um melhor desempenho foi o modelo não-linear Random Forest. Demostrando que nosso projeto contém dados bastantes complexos. 
 
-Etapa 2:
+**Etapa 2:**
 
-Nesta etapa é feita validação de todos os algoritmos testados anteriomente. Mas para que essa validação seja feita, foi desmembrado uma parte dos dados novamente, entre tanto, essa parte é combinado com outras partes para que a previsão seja mais assertiva. 
+Nesta etapa foi feita validações de todos os algoritmos testados anteriomente. Mas para que essa validação seja feita, foi desmembrado uma parte dos dados novamente, entre tanto, essa parte é combinado com outras partes para que a previsão seja realmente mais efetiva. 
 
 Após esse novo ciclo de teste concluído, novamente o modelo Random Forest foi o que teve melhor desempenho. Tabela abaixo aponta o desempenho real de todos os modelos testados no projeto. 
 
@@ -128,8 +130,31 @@ Após esse novo ciclo de teste concluído, novamente o modelo Random Forest foi 
 | Linear Regression-CV	| 2036.42 +/- 273.82| 0.3 +/- 0.02	|  2863.19 +/- 450.99 |
 | Linear Regression-Lasso-CV| 0.29 +/- 0.01| 0.15 +/- 0.03 | 2960.02 +/- 508.61 |
 
-Apesar do modelo Random Forest te tido o melhor desempenho entre todos, no projeto foi optado por utilizar o algoritmo XgBoost Regressor. Pois como essa é a primeira fase do CRISP, onde o foco maior é agregar valor ao time de négocio da empresa o mais rápido possível, o modelo XgBoost tem uma assertividade muito próxima do Random Forest, entre tanto esse modelo leva menos tempo para rodar e consegue ser também mais leve e isso há uma facilidade maior para fase de deploy do projeto, quando fomos subir o modelo para um servidor externo.  
+Apesar do modelo Random Forest te tido o melhor desempenho entre todos, no projeto foi optado por utilizar o algoritmo XgBoost Regressor. Pois como essa é a primeira fase do CRISP, onde o foco maior é agregar valor ao time de négocio da empresa o mais rápido possível, o modelo XgBoost tem uma assertividade muito próxima do Random Forest. Entre tanto esse modelo leva menos tempo para rodar e consegue ser também mais leve e isso  será uma grande vantagem na fase final deste projeto, onde será feita uma hospedagem do modelo em um servidor externo.
 
-## Avaliação do Algoritmo 
+## Avaliação do Algoritmo
+
+Após ter feito a seleção do algoritmo para efetuar a previsão das vendas, é necessária saber o quanto a empresa terá de retorno financeiro após o tratamento e modelagem dos dados coletados. Então para isso é necessário intepretar e traduzir os erros do modelo para o time de negócio saiba o tão proximo a previsão está das reais vendas. 
+
+Na tabela abaixo é uma amostra das lojas, que tiveram neste projeto uma melhor performance de previsão do faturamento. 
+ 
+
+|      store          |    predictions      |     best_scenario   | wors_scenario  |    MAE        |     MAPE  |
+| ------------------- | ------------------- | ------------------- | -------------  | ------------- | --------- |  
+|  1089               |  377792.40625	      |   377792.461136     | 377792.351364  | 568.940865    |  0.054886 |
+|  259                |   555878.12500      |   555878.180920     | 555878.069080  | 677.860215	   |  0.055920 |
+|  741                |   555878.12500      |   298727.932730     | 298727.817270  | 463.810903    |  0.057730 |
+	
+ERRO MAE: Esse é interessante apontar para o time de négocio a métrica de erro MAE, pois esse tipo de métrica subtriar dos valores reais os valores preditos e com isso temos a diferença que pode occorer, com isso ocasionando um cenário positivo ou negativo das previsões feitas. 
+
+ERRO MAPE : Já a métrica de erro MAPE é uma métrica que fornece o percentual de erro das previsões estimadas. Ela é uma excelente métrica para demostar o ao time de negócios o tão longe ou perto as previsões estão dos números reais das vendas.  
+
+E com isso é possível dizer que após todas essas etapas concluídas o retorno financeiro deste projeto será dentro destes três cenários na tabela a seguir:
+
+|      Scenarios      |         Values      |   
+| ------------------- | ------------------- |   
+|  predictions	       |  R$287,726,528.00   |   
+|  worst_scenario     |  R$287,726,366.55   |   
+|  best_scenario      |  R$287,726,634.87   |  
 
 ## Modelo em Produção
